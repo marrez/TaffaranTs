@@ -37,7 +37,7 @@ export const PlayerHand = ({
         </span>
       </div>
 
-      <div className="flex flex-wrap justify-center gap-2 px-2">
+      <div className="flex flex-wrap justify-center gap-1 sm:gap-2 px-1 sm:px-2">
         {sortedCards.map((card, index) => (
           <div
             key={card.id}
@@ -49,7 +49,16 @@ export const PlayerHand = ({
               onClick={() => onCardClick?.(card)}
               isPlayable={playableCards?.has(card.id) ?? true}
               isSelected={selectedCard?.id === card.id}
+              size="sm"
+              className="sm:hidden"
+            />
+            <PlayingCard
+              card={card}
+              onClick={() => onCardClick?.(card)}
+              isPlayable={playableCards?.has(card.id) ?? true}
+              isSelected={selectedCard?.id === card.id}
               size="md"
+              className="hidden sm:block"
             />
           </div>
         ))}

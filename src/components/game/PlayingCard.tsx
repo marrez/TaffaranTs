@@ -9,6 +9,7 @@ interface PlayingCardProps {
   isSelected?: boolean;
   className?: string;
   size?: 'sm' | 'md' | 'lg';
+  faceDown?: boolean;
 }
 
 export const PlayingCard = ({
@@ -18,15 +19,36 @@ export const PlayingCard = ({
   isSelected = false,
   className,
   size = 'md',
+  faceDown = false,
 }: PlayingCardProps) => {
   const suitSymbol = getSuitSymbol(card.suit);
   const colorClass = getSuitColor(card.suit);
 
   const sizeClasses = {
-    sm: 'w-12 h-16 text-xs',
+    sm: 'w-10 h-14 text-[10px]',
     md: 'w-16 h-24 text-sm',
     lg: 'w-20 h-32 text-base',
   };
+
+  // Face-down card back rendering
+  if (faceDown) {
+    return (
+      <div
+        className={cn(
+          'relative rounded-lg shadow-lg transition-all duration-300',
+          'border-2 border-slate-700 flex items-center justify-center',
+          'bg-gradient-to-br from-slate-800 via-slate-700 to-slate-800',
+          sizeClasses[size],
+          className
+        )}
+        style={{
+          boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.3)',
+        }}
+      >
+        <div className="text-2xl opacity-40">🂠</div>
+      </div>
+    );
+  }
 
   return (
     <button

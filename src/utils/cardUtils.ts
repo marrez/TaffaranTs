@@ -1,17 +1,20 @@
 import { Card, Suit, Rank } from '@/types/game';
 
 const suits: Suit[] = ['hearts', 'diamonds', 'clubs', 'spades'];
-const ranks: Rank[] = ['A', 'K', 'Q', 'J', '10', '9', '8', '7', '6', '5', '4', '3', '2'];
+const ranks: Rank[] = ['A', 'K', 'Q', 'J', '10', '9', '8', '7'];
+
+let deckCounter = 0;
 
 export const createDeck = (): Card[] => {
   const deck: Card[] = [];
+  const deckId = ++deckCounter;
   
   for (const suit of suits) {
     for (const rank of ranks) {
       deck.push({
         suit,
         rank,
-        id: `${suit}-${rank}`,
+        id: `${suit}-${rank}-${deckId}`,
       });
     }
   }
@@ -49,14 +52,13 @@ export const getSuitSymbol = (suit: Suit): string => {
 };
 
 export const getSuitColor = (suit: Suit): string => {
-  return suit === 'hearts' || suit === 'diamonds' ? 'text-red-600' : 'text-gray-900';
+  return suit === 'hearts' || suit === 'diamonds' ? 'text-red-600' : 'text-slate-100';
 };
 
 export const getRankValue = (rank: Rank): number => {
   const values: Record<Rank, number> = {
     'A': 14, 'K': 13, 'Q': 12, 'J': 11, '10': 10, 
-    '9': 9, '8': 8, '7': 7, '6': 6, '5': 5, 
-    '4': 4, '3': 3, '2': 2
+    '9': 9, '8': 8, '7': 7
   };
   return values[rank];
 };

@@ -9,6 +9,7 @@ interface ScoreBoardProps {
 }
 
 export const ScoreBoard = ({ players, currentRound, totalRounds }: ScoreBoardProps) => {
+  const minScore = Math.min(...players.map(p => p.score));
   return (
     <Card className="p-4 bg-card/80 backdrop-blur-sm">
       <div className="flex items-center justify-between mb-4">
@@ -39,6 +40,9 @@ export const ScoreBoard = ({ players, currentRound, totalRounds }: ScoreBoardPro
                 <span className="text-xs px-2 py-0.5 bg-primary text-primary-foreground rounded-full">
                   Declarer
                 </span>
+              )}
+              {player.score === minScore && minScore !== 0 && (
+                <span className="text-lg">🐑</span>
               )}
             </div>
             <span className={cn(

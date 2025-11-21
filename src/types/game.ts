@@ -1,10 +1,15 @@
 export type Suit = 'hearts' | 'diamonds' | 'clubs' | 'spades';
-export type Rank = 'A' | 'K' | 'Q' | 'J' | '10' | '9' | '8' | '7' | '6' | '5' | '4' | '3' | '2';
+export type Rank = 'A' | 'K' | 'Q' | 'J' | '10' | '9' | '8' | '7';
 
 export interface Card {
   suit: Suit;
   rank: Rank;
   id: string;
+}
+
+export interface PlayedCard {
+  card: Card;
+  playerId: number;
 }
 
 export type ContractType = 
@@ -14,7 +19,9 @@ export type ContractType =
   | 'no-hearts'
   | 'no-king'
   | 'trumps'
-  | 'dominoes';
+  | 'dominoes'
+  | 'salade'
+  | 'belotte';
 
 export interface Contract {
   type: ContractType;
@@ -40,11 +47,12 @@ export interface GameState {
   currentContract: ContractType | null;
   trumpSuit?: Suit;
   dominoesStartRank?: Rank;
-  round: number; // 1-28
-  handNumber: number; // 1-7 for each player
-  trick: Card[];
+  round: number; // 1-28 (7 contracts × 4 players)
+  handNumber: number; // 1-8 (8 cards per hand)
+  trick: PlayedCard[];
   trickWinner: number | null;
   doubles: number[][];
   scores: number[];
-  phase: 'setup' | 'contract-selection' | 'doubling' | 'playing' | 'scoring' | 'complete';
+  phase: 'setup' | 'game-setup' | 'contract-selection' | 'trump-selection' | 'doubling' | 'playing' | 'scoring' | 'complete';
+  selectedContracts?: ContractType[];
 }
