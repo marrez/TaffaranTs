@@ -23,21 +23,21 @@ export const PlayerHand = ({
   const sortedCards = sortHand(cards);
 
   return (
-    <div className="space-y-4 landscape-phone:space-y-1 animate-slide-up landscape-phone:flex-shrink-0">
-      <div className="flex items-center justify-between px-4 landscape-phone:px-2 landscape-phone:py-0.5">
+    <div className="space-y-4 landscape-phone:space-y-0 animate-slide-up landscape-phone:flex-shrink-0">
+      <div className="flex items-center justify-between px-4 landscape-phone:px-1 landscape-phone:py-0">
         <h3 className={cn(
-          'text-lg landscape-phone:text-xs font-bold',
+          'text-lg landscape-phone:text-[10px] font-bold',
           isCurrentPlayer && 'text-primary animate-pulse-gold'
         )}>
           {playerName}
           {isCurrentPlayer && <span className="landscape-phone:hidden"> - Your Turn</span>}
         </h3>
-        <span className="text-sm landscape-phone:text-[10px] text-muted-foreground">
+        <span className="text-sm landscape-phone:text-[8px] text-muted-foreground">
           {cards.length} cards
         </span>
       </div>
 
-      <div className="flex flex-wrap landscape-phone:flex-nowrap landscape-phone:overflow-x-auto landscape-phone:pb-1 justify-center gap-1 sm:gap-2 landscape-phone:gap-0.5 px-1 sm:px-2 landscape-phone:px-1">
+      <div className="flex flex-wrap landscape-phone:flex-nowrap landscape-phone:overflow-x-auto landscape-phone:pb-0.5 justify-center gap-1 sm:gap-2 landscape-phone:gap-0.5 px-1 sm:px-2 landscape-phone:px-0.5">
         {sortedCards.map((card, index) => (
           <div
             key={card.id}

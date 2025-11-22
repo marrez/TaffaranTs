@@ -443,7 +443,7 @@ const Index = () => {
       )}
 
       {/* Main Game Area */}
-      <main className="container mx-auto px-4 py-6 landscape-phone:py-1 landscape-phone:px-2 space-y-6 landscape-phone:space-y-1 landscape-phone:h-[calc(100vh-50px)] landscape-phone:flex landscape-phone:flex-col landscape-phone:justify-between safe-bottom">
+      <main className="container mx-auto px-4 py-6 landscape-phone:py-0 landscape-phone:px-1 space-y-6 landscape-phone:space-y-0 landscape-phone:h-[calc(100vh-44px)] landscape-phone:flex landscape-phone:flex-col safe-bottom">
         {/* Game Setup Phase */}
         {gameState.phase === 'game-setup' && (
           <GameSetup onStartGame={handleGameSetup} />
@@ -477,14 +477,16 @@ const Index = () => {
 
         {/* Game Board */}
         {(gameState.phase === 'playing' || gameState.phase === 'scoring') && (
-          <GameBoard
-            trick={gameState.trick}
-            currentContract={currentContract || 'No Contract'}
-            players={gameState.players}
-            currentPlayer={gameState.currentPlayer}
-            tricksWon={tricksWon}
-            trickWinner={gameState.trickWinner}
-          />
+          <div className="landscape-phone:flex-1 landscape-phone:flex landscape-phone:items-center landscape-phone:min-h-0">
+            <GameBoard
+              trick={gameState.trick}
+              currentContract={currentContract || 'No Contract'}
+              players={gameState.players}
+              currentPlayer={gameState.currentPlayer}
+              tricksWon={tricksWon}
+              trickWinner={gameState.trickWinner}
+            />
+          </div>
         )}
 
         {/* Player's Hand */}
@@ -500,14 +502,14 @@ const Index = () => {
 
         {/* Debug/Testing Controls */}
         {gameState.phase === 'scoring' && (
-          <div className="text-center py-8 space-y-4 animate-fade-in">
-            <h2 className="text-2xl font-bold text-foreground">Hand Complete!</h2>
-            <div className="grid grid-cols-2 gap-4 max-w-md mx-auto">
+          <div className="text-center py-8 landscape-phone:py-2 space-y-4 landscape-phone:space-y-2 animate-fade-in">
+            <h2 className="text-2xl landscape-phone:text-base font-bold text-foreground">Hand Complete!</h2>
+            <div className="grid grid-cols-2 landscape-phone:grid-cols-4 gap-4 landscape-phone:gap-2 max-w-md landscape-phone:max-w-full mx-auto">
               {gameState.players.map((player, index) => (
-                <div key={player.id} className="bg-card p-4 rounded-lg">
-                  <p className="font-bold">{player.name}</p>
-                  <p className="text-2xl text-primary">{player.score}</p>
-                  <p className="text-sm text-muted-foreground">{tricksWon[index]} tricks</p>
+                <div key={player.id} className="bg-card p-4 landscape-phone:p-2 rounded-lg">
+                  <p className="font-bold landscape-phone:text-xs">{player.name}</p>
+                  <p className="text-2xl landscape-phone:text-lg text-primary">{player.score}</p>
+                  <p className="text-sm landscape-phone:text-[10px] text-muted-foreground">{tricksWon[index]} tricks</p>
                 </div>
               ))}
             </div>
@@ -515,24 +517,24 @@ const Index = () => {
         )}
 
         {gameState.phase === 'complete' && (
-          <div className="text-center py-8 space-y-4 animate-fade-in">
-            <h2 className="text-3xl font-bold text-foreground">Game Complete!</h2>
-            <div className="space-y-2">
+          <div className="text-center py-8 landscape-phone:py-2 space-y-4 landscape-phone:space-y-2 animate-fade-in">
+            <h2 className="text-3xl landscape-phone:text-lg font-bold text-foreground">Game Complete!</h2>
+            <div className="space-y-2 landscape-phone:space-y-1">
               {[...gameState.players]
                 .sort((a, b) => b.score - a.score)
                 .map((player, index) => (
-                  <div key={player.id} className="bg-card p-4 rounded-lg max-w-md mx-auto">
-                    <span className="text-2xl mr-2">
+                  <div key={player.id} className="bg-card p-4 landscape-phone:p-2 rounded-lg max-w-md mx-auto">
+                    <span className="text-2xl landscape-phone:text-lg mr-2">
                       {index === 0 ? '🥇' : index === 1 ? '🥈' : index === 2 ? '🥉' : '4️⃣'}
                     </span>
-                    <span className="font-bold">{player.name}</span>
-                    <span className="text-2xl text-primary ml-4">{player.score}</span>
+                    <span className="font-bold landscape-phone:text-sm">{player.name}</span>
+                    <span className="text-2xl landscape-phone:text-lg text-primary ml-4">{player.score}</span>
                   </div>
                 ))}
             </div>
             <Button
               onClick={() => window.location.reload()}
-              className="bg-primary hover:bg-primary/90 mt-4"
+              className="bg-primary hover:bg-primary/90 mt-4 landscape-phone:mt-2 landscape-phone:h-8 landscape-phone:text-xs"
             >
               New Game
             </Button>
