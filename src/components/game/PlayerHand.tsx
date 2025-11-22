@@ -23,21 +23,21 @@ export const PlayerHand = ({
   const sortedCards = sortHand(cards);
 
   return (
-    <div className="space-y-4 animate-slide-up">
-      <div className="flex items-center justify-between px-4">
+    <div className="space-y-4 landscape-phone:space-y-1 animate-slide-up landscape-phone:flex-shrink-0">
+      <div className="flex items-center justify-between px-4 landscape-phone:px-2 landscape-phone:py-0.5">
         <h3 className={cn(
-          'text-lg font-bold',
+          'text-lg landscape-phone:text-xs font-bold',
           isCurrentPlayer && 'text-primary animate-pulse-gold'
         )}>
           {playerName}
-          {isCurrentPlayer && ' - Your Turn'}
+          {isCurrentPlayer && <span className="landscape-phone:hidden"> - Your Turn</span>}
         </h3>
-        <span className="text-sm text-muted-foreground">
+        <span className="text-sm landscape-phone:text-[10px] text-muted-foreground">
           {cards.length} cards
         </span>
       </div>
 
-      <div className="flex flex-wrap justify-center gap-1 sm:gap-2 px-1 sm:px-2">
+      <div className="flex flex-wrap landscape-phone:flex-nowrap landscape-phone:overflow-x-auto landscape-phone:pb-1 justify-center gap-1 sm:gap-2 landscape-phone:gap-0.5 px-1 sm:px-2 landscape-phone:px-1">
         {sortedCards.map((card, index) => (
           <div
             key={card.id}
@@ -49,8 +49,16 @@ export const PlayerHand = ({
               onClick={() => onCardClick?.(card)}
               isPlayable={playableCards?.has(card.id) ?? true}
               isSelected={selectedCard?.id === card.id}
+              size="xs"
+              className="landscape-phone:block hidden"
+            />
+            <PlayingCard
+              card={card}
+              onClick={() => onCardClick?.(card)}
+              isPlayable={playableCards?.has(card.id) ?? true}
+              isSelected={selectedCard?.id === card.id}
               size="sm"
-              className="sm:hidden"
+              className="sm:hidden landscape-phone:hidden"
             />
             <PlayingCard
               card={card}
@@ -58,7 +66,7 @@ export const PlayerHand = ({
               isPlayable={playableCards?.has(card.id) ?? true}
               isSelected={selectedCard?.id === card.id}
               size="md"
-              className="hidden sm:block"
+              className="hidden sm:block landscape-phone:hidden"
             />
           </div>
         ))}

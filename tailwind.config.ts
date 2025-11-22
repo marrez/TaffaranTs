@@ -13,6 +13,9 @@ export default {
       },
     },
     extend: {
+      screens: {
+        'landscape-phone': { 'raw': '(orientation: landscape) and (max-height: 500px)' },
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",

@@ -380,19 +380,19 @@ const Index = () => {
 
   return (
     <div 
-      className="min-h-screen bg-felt-green relative overflow-hidden"
+      className="min-h-screen landscape-phone:h-screen landscape-phone:max-h-screen bg-felt-green relative overflow-hidden landscape-phone:overflow-hidden"
       style={{ background: 'var(--felt-texture)' }}
     >
       {showTutorial && <TutorialOverlay onClose={() => setShowTutorial(false)} />}
 
       {/* Header */}
-      <header className="sticky top-0 z-10 bg-card/90 backdrop-blur-sm border-b border-border shadow-lg">
-        <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="text-3xl">🃏</div>
+      <header className="sticky top-0 z-10 bg-card/90 backdrop-blur-sm border-b border-border shadow-lg landscape-phone:py-0 safe-top">
+        <div className="container mx-auto px-4 py-4 landscape-phone:py-1 flex items-center justify-between">
+          <div className="flex items-center gap-3 landscape-phone:gap-2">
+            <div className="text-3xl landscape-phone:text-2xl">🃏</div>
             <div>
-              <h1 className="text-2xl font-bold text-foreground">Taffaran</h1>
-              <p className="text-xs text-muted-foreground">French Card Game</p>
+              <h1 className="text-2xl landscape-phone:text-lg font-bold text-foreground">Taffaran</h1>
+              <p className="text-xs landscape-phone:text-[10px] text-muted-foreground landscape-phone:hidden">French Card Game</p>
             </div>
           </div>
           
@@ -443,7 +443,7 @@ const Index = () => {
       )}
 
       {/* Main Game Area */}
-      <main className="container mx-auto px-4 py-6 space-y-6">
+      <main className="container mx-auto px-4 py-6 landscape-phone:py-1 landscape-phone:px-2 space-y-6 landscape-phone:space-y-1 landscape-phone:h-[calc(100vh-50px)] landscape-phone:flex landscape-phone:flex-col landscape-phone:justify-between safe-bottom">
         {/* Game Setup Phase */}
         {gameState.phase === 'game-setup' && (
           <GameSetup onStartGame={handleGameSetup} />

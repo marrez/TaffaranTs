@@ -8,7 +8,7 @@ interface PlayingCardProps {
   isPlayable?: boolean;
   isSelected?: boolean;
   className?: string;
-  size?: 'sm' | 'md' | 'lg';
+  size?: 'xs' | 'sm' | 'md' | 'lg';
   faceDown?: boolean;
 }
 
@@ -25,6 +25,7 @@ export const PlayingCard = ({
   const colorClass = getSuitColor(card.suit);
 
   const sizeClasses = {
+    xs: 'w-9 h-12 text-[9px]',
     sm: 'w-10 h-14 text-[10px]',
     md: 'w-16 h-24 text-sm',
     lg: 'w-20 h-32 text-base',
